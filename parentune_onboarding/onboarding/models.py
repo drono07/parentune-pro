@@ -61,8 +61,8 @@ class Child(models.Model):
 
 class Blog(models.Model):
     BLOG_TYPE_CHOICES = [
-        ('blog', 'Blog'),
-        ('vlog', 'Vlog'),
+        ("blog", "Blog"),
+        ("vlog", "Vlog"),
     ]
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -75,7 +75,16 @@ class Blog(models.Model):
     snippet = models.TextField()
     preview_image = models.URLField(max_length=500, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    type = models.CharField(max_length=10, choices=BLOG_TYPE_CHOICES, default='blog')
+    type = models.CharField(
+        max_length=10, choices=BLOG_TYPE_CHOICES, default="blog"
+    )
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["age_group"]),
+            models.Index(fields=["gender"]),
+            models.Index(fields=["parent_type"]),
+        ]

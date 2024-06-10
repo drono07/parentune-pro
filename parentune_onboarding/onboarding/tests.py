@@ -37,3 +37,13 @@ class APITestCase(TestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_home_feed_view(self):
+        response = self.client.get(
+            "/api/home-feed/",
+            {
+                "age_group": "infant",
+                "gender": "male",
+            },
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
